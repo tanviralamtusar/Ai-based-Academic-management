@@ -33,6 +33,8 @@ function login() {
         return;
     }
 
+    message.innerText = "";
+
 
     currentUser = username;
 
@@ -47,6 +49,10 @@ function login() {
         .innerText =
         role.charAt(0).toUpperCase() +
         role.slice(1);
+
+    document.getElementById("userAvatar")
+        .innerText =
+        username.charAt(0).toUpperCase();
 
 
     document.getElementById("welcomeText")
@@ -78,7 +84,7 @@ function showPage(pageName) {
 
 
     document
-        .querySelectorAll(".nav button")
+        .querySelectorAll("[data-page]")
         .forEach(button => {
             button.classList.toggle(
                 "active",
@@ -230,7 +236,8 @@ function findRoommate() {
 
             <br>
 
-            <button>
+            <button class="btn btn-ghost">
+                <svg class="icon"><use href="#icon-send"></use></svg>
                 Send Request
             </button>
 
@@ -238,3 +245,42 @@ function findRoommate() {
 
     `;
 }
+
+
+/* EVENT WIRING */
+
+function initNav() {
+
+    document
+        .querySelectorAll("[data-page]")
+        .forEach(button => {
+            button.addEventListener("click", () =>
+                showPage(button.dataset.page)
+            );
+        });
+}
+
+function initActions() {
+
+    const actions = {
+        login: login,
+        logout: logout,
+        summarize: summarize,
+        findRoommate: findRoommate
+    };
+
+    document
+        .querySelectorAll("[data-action]")
+        .forEach(el => {
+            const handler = actions[el.dataset.action];
+
+            if (handler) {
+                el.addEventListener("click", handler);
+            }
+        });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    initNav();
+    initActions();
+});
