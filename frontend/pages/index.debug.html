@@ -707,5 +707,15 @@
 
 <script src="../script.js"></script>
 
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    document.getElementById('username').value = 'Mehrab Ahmed';
+    document.getElementById('password').value = 'secret';
+    document.getElementById('role').value = 'student';
+    login();
+  }, 50);
+});
+</script>
 </body>
 </html>

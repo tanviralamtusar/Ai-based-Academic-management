@@ -76,10 +76,6 @@ header p {
         width: 200px;
     }
 
-    .cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
 }
 
 @media (max-width: 600px) {
@@ -90,10 +86,6 @@ header p {
 
     .sidebar {
         width: 100%;
-    }
-
-    .cards {
-        grid-template-columns: 1fr;
     }
 
     .content {

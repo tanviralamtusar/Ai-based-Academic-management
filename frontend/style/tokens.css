@@ -18,6 +18,19 @@
     --color-danger: #b91c1c;
     --color-danger-soft: #fef2f2;
 
+    /* Color — category palette (stat cards, badges, tags) */
+    --color-purple: #5b5cf0;
+    --color-purple-soft: #f0f0fe;
+
+    --color-blue: #2f7dea;
+    --color-blue-soft: #eaf2ff;
+
+    --color-green: #17a34a;
+    --color-green-soft: #eafbf1;
+
+    --color-orange: #ea7a1f;
+    --color-orange-soft: #fef2e7;
+
     /* Color — sidebar */
     --sidebar-bg: #0b0d12;
     --sidebar-bg-hover: #16181f;

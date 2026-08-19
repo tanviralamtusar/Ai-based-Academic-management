@@ -55,12 +55,20 @@ function login() {
         username.charAt(0).toUpperCase();
 
 
-    document.getElementById("welcomeText")
-        .innerText =
-        "Welcome, " + username + "!";
-
-
     showPage("dashboard");
+}
+
+
+/* GREETING */
+
+function getGreeting() {
+
+    const hour = new Date().getHours();
+
+    if (hour < 12) return "Good morning";
+    if (hour < 18) return "Good afternoon";
+
+    return "Good evening";
 }
 
 
@@ -112,9 +120,33 @@ function showPage(pageName) {
     };
 
 
-    document.getElementById("pageTitle")
-        .innerText =
-        titles[pageName];
+    const pageTitle =
+        document.getElementById("pageTitle");
+
+    const welcomeText =
+        document.getElementById("welcomeText");
+
+
+    if (pageName === "dashboard") {
+
+        pageTitle.textContent =
+            `${getGreeting()}, ${currentUser} `;
+
+        const wave = document.createElement("span");
+        wave.className = "wave";
+        wave.textContent = "👋";
+        pageTitle.appendChild(wave);
+
+        welcomeText.textContent =
+            "Here's what's happening with your studies today.";
+
+    } else {
+
+        pageTitle.textContent = titles[pageName];
+
+        welcomeText.textContent =
+            "Welcome, " + currentUser + "!";
+    }
 }
 
 
