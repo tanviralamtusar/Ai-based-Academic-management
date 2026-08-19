@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="../style/pages.css">
     <link rel="stylesheet" href="../style/dashboard.css">
     <link rel="stylesheet" href="../style/portal.css">
+    <link rel="stylesheet" href="../style/admin.css">
 </head>
 
 <body>
@@ -139,6 +140,32 @@
             <path d="M14.7 20C14.9 17.2 16.7 15.2 19 15.2C21 15.2 21.5 16.8 21.5 18.2"></path>
         </symbol>
 
+        <symbol id="icon-settings" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3.2"></circle>
+            <path d="M19.4 13.9C19.5 13.3 19.5 12.7 19.4 12.1L21 10.8L19.5 8.2L17.6 8.9C17.1 8.5 16.6 8.1 16 7.9L15.7 5.9H12.3L12 7.9C11.4 8.1 10.9 8.5 10.4 8.9L8.5 8.2L7 10.8L8.6 12.1C8.5 12.7 8.5 13.3 8.6 13.9L7 15.2L8.5 17.8L10.4 17.1C10.9 17.5 11.4 17.9 12 18.1L12.3 20.1H15.7L16 18.1C16.6 17.9 17.1 17.5 17.6 17.1L19.5 17.8L21 15.2L19.4 13.9Z"></path>
+        </symbol>
+
+        <symbol id="icon-shield" viewBox="0 0 24 24">
+            <path d="M12 3L19 6V11C19 15.5 16 19 12 21C8 19 5 15.5 5 11V6L12 3Z"></path>
+            <polyline points="9 12 11 14 15 9.5"></polyline>
+        </symbol>
+
+        <symbol id="icon-flag" viewBox="0 0 24 24">
+            <path d="M5 3V21"></path>
+            <path d="M5 4H17.5L15 8L17.5 12H5"></path>
+        </symbol>
+
+        <symbol id="icon-plus" viewBox="0 0 24 24">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+        </symbol>
+
+        <symbol id="icon-trash" viewBox="0 0 24 24">
+            <path d="M4 7H20"></path>
+            <path d="M9 7V4.5C9 3.95 9.45 3.5 10 3.5H14C14.55 3.5 15 3.95 15 4.5V7"></path>
+            <path d="M6 7L6.8 19.2C6.85 19.9 7.4 20.5 8.1 20.5H15.9C16.6 20.5 17.15 19.9 17.2 19.2L18 7"></path>
+        </symbol>
+
     </defs>
 </svg>
 
@@ -149,7 +176,7 @@
     <div class="login-box">
 
         <div class="brand-mark">
-            <svg class="icon"><use href="#icon-logo"></use></svg>
+            <svg class="icon" aria-hidden="true"><use href="#icon-logo"></use></svg>
         </div>
 
         <h1>University Portal</h1>
@@ -183,25 +210,397 @@
 </div>
 
 
-<!-- ADMIN PLACEHOLDER -->
-<div id="adminPlaceholder" class="login-page hidden">
+<!-- ADMIN PORTAL -->
+<div id="adminApp" class="app hidden">
 
-    <div class="login-box">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
 
-        <div class="brand-mark">
-            <svg class="icon"><use href="#icon-logo"></use></svg>
+        <div class="brand">
+            <svg class="icon" aria-hidden="true"><use href="#icon-logo"></use></svg>
+            UniPortal
         </div>
 
-        <h1>Admin Portal</h1>
-        <p class="subtitle">Coming soon</p>
+        <nav class="nav">
 
-        <p style="color: var(--color-text-muted); font-size: 14px; margin-bottom: 24px;">
-            The Admin portal isn't available in this build yet. User management, course catalog, and moderation tools are planned for a later phase.
-        </p>
+            <button class="nav-item" data-page="dashboard" data-title="Dashboard">
+                <svg class="icon" aria-hidden="true"><use href="#icon-dashboard"></use></svg>
+                <span>Dashboard</span>
+            </button>
 
-        <button class="btn btn-primary btn-block" data-action="logout">Back to Login</button>
+            <button class="nav-item" data-page="users" data-title="User Management">
+                <svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg>
+                <span>User Management</span>
+            </button>
 
-    </div>
+            <button class="nav-item" data-page="catalog" data-title="Course Catalog">
+                <svg class="icon" aria-hidden="true"><use href="#icon-courses"></use></svg>
+                <span>Course Catalog</span>
+            </button>
+
+            <button class="nav-item" data-page="moderation" data-title="Hostel Moderation">
+                <svg class="icon" aria-hidden="true"><use href="#icon-flag"></use></svg>
+                <span>Hostel Moderation</span>
+                <span class="nav-badge hidden"></span>
+            </button>
+
+            <button class="nav-item" data-page="logs" data-title="Security &amp; Access Logs">
+                <svg class="icon" aria-hidden="true"><use href="#icon-shield"></use></svg>
+                <span>Security Logs</span>
+            </button>
+
+            <button class="nav-item" data-page="notifications" data-title="Notifications">
+                <svg class="icon" aria-hidden="true"><use href="#icon-notifications"></use></svg>
+                <span>Notifications</span>
+                <span class="nav-badge hidden"></span>
+            </button>
+
+            <button class="nav-item" data-page="settings" data-title="System Settings">
+                <svg class="icon" aria-hidden="true"><use href="#icon-settings"></use></svg>
+                <span>Settings</span>
+            </button>
+
+        </nav>
+
+        <button class="nav-item logout" data-action="logout">
+            <svg class="icon" aria-hidden="true"><use href="#icon-logout"></use></svg>
+            <span>Logout</span>
+        </button>
+
+    </aside>
+
+
+    <!-- CONTENT -->
+    <main class="content">
+
+        <!-- HEADER -->
+        <header>
+
+            <div>
+                <h2 class="page-title">Dashboard</h2>
+                <p class="welcome-text">
+                    Welcome to your university portal.
+                </p>
+            </div>
+
+            <div class="profile">
+                <span class="avatar user-avatar">A</span>
+                <span class="user-role">Admin</span>
+                <svg class="icon icon-sm" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
+            </div>
+
+        </header>
+
+
+        <!-- DASHBOARD -->
+        <section class="page" data-page="dashboard">
+
+            <div class="cards">
+
+                <div class="card card--purple">
+                    <div class="card-icon">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg>
+                    </div>
+                    <div class="card-body">
+                        <h3>Total Users</h3>
+                        <strong>642</strong>
+                        <p>Students, teachers &amp; admins</p>
+                    </div>
+                    <svg class="card-watermark" aria-hidden="true"><use href="#icon-users"></use></svg>
+                </div>
+
+                <div class="card card--blue">
+                    <div class="card-icon">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-courses"></use></svg>
+                    </div>
+                    <div class="card-body">
+                        <h3>Active Courses</h3>
+                        <strong>34</strong>
+                        <p>Across all departments</p>
+                    </div>
+                    <svg class="card-watermark" aria-hidden="true"><use href="#icon-courses"></use></svg>
+                </div>
+
+                <div class="card card--orange">
+                    <div class="card-icon">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-flag"></use></svg>
+                    </div>
+                    <div class="card-body">
+                        <h3>Pending Reports</h3>
+                        <strong class="admin-pending-reports-count">2</strong>
+                        <p>Hostel finder moderation</p>
+                    </div>
+                    <svg class="card-watermark" aria-hidden="true"><use href="#icon-flag"></use></svg>
+                </div>
+
+                <div class="card card--green">
+                    <div class="card-icon">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-shield"></use></svg>
+                    </div>
+                    <div class="card-body">
+                        <h3>System Health</h3>
+                        <strong>99.9%</strong>
+                        <p>Uptime this month</p>
+                    </div>
+                    <svg class="card-watermark" aria-hidden="true"><use href="#icon-shield"></use></svg>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <h3 class="panel-title">
+                            <svg class="icon" aria-hidden="true"><use href="#icon-pulse"></use></svg>
+                            Recent System Activity
+                        </h3>
+                    </div>
+
+                    <div class="activity-item">
+                        <span class="activity-icon activity-icon--purple">
+                            <svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg>
+                        </span>
+                        <div class="activity-body">
+                            <div class="title">14 new student accounts created</div>
+                            <div class="meta">Fall 2026 intake</div>
+                        </div>
+                        <span class="activity-time">Today</span>
+                    </div>
+
+                    <div class="activity-item">
+                        <span class="activity-icon activity-icon--orange">
+                            <svg class="icon" aria-hidden="true"><use href="#icon-flag"></use></svg>
+                        </span>
+                        <div class="activity-body">
+                            <div class="title">Hostel listing reported</div>
+                            <div class="meta">Awaiting moderation review</div>
+                        </div>
+                        <span class="activity-time">Yesterday</span>
+                    </div>
+
+                    <div class="activity-item">
+                        <span class="activity-icon activity-icon--blue">
+                            <svg class="icon" aria-hidden="true"><use href="#icon-courses"></use></svg>
+                        </span>
+                        <div class="activity-body">
+                            <div class="title">Computer Networks II added to catalog</div>
+                            <div class="meta">Dept. of CSE</div>
+                        </div>
+                        <span class="activity-time">2 days ago</span>
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-side">
+
+                    <div class="panel">
+
+                        <div class="panel-header">
+                            <h3 class="panel-title">Storage</h3>
+                        </div>
+
+                        <div class="gauge gauge-lg" style="--gauge-color:var(--color-blue); --gauge-percent:62;">
+                            <div class="gauge-hole"></div>
+                            <div class="gauge-content">
+                                <strong>62%</strong>
+                                <span>of 500 GB used</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- USER MANAGEMENT -->
+        <section class="page hidden" data-page="users">
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <h3>All Users</h3>
+                    <button class="btn btn-ghost btn-sm" data-action="bulkUserAction" data-user-action="deactivate">
+                        Deactivate Selected
+                    </button>
+                </div>
+
+                <div class="filter-row">
+                    <input class="field" id="userSearch" placeholder="Search by name...">
+                    <select class="field" id="userRoleFilter">
+                        <option value="">All Roles</option>
+                        <option value="Student">Student</option>
+                        <option value="Teacher">Teacher</option>
+                        <option value="Admin">Admin</option>
+                    </select>
+                    <button class="btn btn-ghost" data-action="filterUsers">Search</button>
+                </div>
+
+                <div class="admin-users-table"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- COURSE CATALOG -->
+        <section class="page hidden" data-page="catalog">
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <h3>Course Catalog</h3>
+                    <button class="btn btn-primary btn-sm" data-action="newCatalogCourse">
+                        <svg class="icon icon-sm" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                        Add Course
+                    </button>
+                </div>
+
+                <div class="admin-catalog-list"></div>
+
+            </div>
+
+            <div class="panel catalog-form hidden">
+
+                <h3 class="catalog-form-title">Add Course</h3>
+
+                <div class="field-group">
+                    <label for="catalogCourseTitle">Course title</label>
+                    <input class="field" id="catalogCourseTitle">
+                </div>
+
+                <div class="field-group">
+                    <label for="catalogCourseDept">Department</label>
+                    <input class="field" id="catalogCourseDept">
+                </div>
+
+                <div class="field-group">
+                    <label for="catalogCourseTerm">Term</label>
+                    <input class="field" id="catalogCourseTerm">
+                </div>
+
+                <button class="btn btn-primary" data-action="saveCatalogCourse">Save Course</button>
+
+            </div>
+
+        </section>
+
+
+        <!-- HOSTEL MODERATION -->
+        <section class="page hidden" data-page="moderation">
+
+            <div class="panel">
+                <h3>Flagged Listings</h3>
+                <div class="admin-moderation-queue"></div>
+            </div>
+
+        </section>
+
+
+        <!-- SECURITY & ACCESS LOGS -->
+        <section class="page hidden" data-page="logs">
+
+            <div class="panel">
+
+                <h3>Security &amp; Access Logs</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>User</th>
+                            <th>Action</th>
+                            <th>IP Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Today, 09:14</td><td>ms.akter</td><td>Login</td><td>10.0.0.14</td></tr>
+                        <tr><td>Today, 08:52</td><td>admin.root</td><td>Reset user MFA</td><td>10.0.0.2</td></tr>
+                        <tr><td>Yesterday, 22:03</td><td>unknown</td><td>Failed login attempt</td><td>203.0.113.5</td></tr>
+                        <tr><td>Yesterday, 17:40</td><td>mr.rahman</td><td>Published grades</td><td>10.0.0.31</td></tr>
+                        <tr><td>Aug 17, 11:05</td><td>admin.root</td><td>Deactivated user account</td><td>10.0.0.2</td></tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- NOTIFICATIONS -->
+        <section class="page hidden" data-page="notifications">
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <h3 class="panel-title">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-notifications"></use></svg>
+                        Notifications
+                    </h3>
+                    <button class="btn btn-ghost btn-sm" data-action="markAllNotificationsRead">Mark all as read</button>
+                </div>
+
+                <div class="notifications-list"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SETTINGS -->
+        <section class="page hidden" data-page="settings">
+
+            <div class="panel">
+
+                <h3>System Settings</h3>
+
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-title">Require strong passwords</div>
+                        <div class="settings-row-desc">Enforce minimum password complexity at signup</div>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                    </label>
+                </div>
+
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-title">Allow self-registration</div>
+                        <div class="settings-row-desc">Let new students create their own accounts</div>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox">
+                        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                    </label>
+                </div>
+
+                <div class="settings-row">
+                    <div>
+                        <div class="settings-row-title">Maintenance mode</div>
+                        <div class="settings-row-desc">Show a maintenance banner to all users</div>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox">
+                        <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                    </label>
+                </div>
+
+                <button class="btn btn-primary" style="margin-top: var(--space-4);" data-action="saveSettings">Save changes</button>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </div>
 
@@ -213,51 +612,52 @@
     <aside class="sidebar">
 
         <div class="brand">
-            <svg class="icon"><use href="#icon-logo"></use></svg>
+            <svg class="icon" aria-hidden="true"><use href="#icon-logo"></use></svg>
             UniPortal
         </div>
 
         <nav class="nav">
 
             <button class="nav-item" data-page="dashboard" data-title="Dashboard">
-                <svg class="icon"><use href="#icon-dashboard"></use></svg>
+                <svg class="icon" aria-hidden="true"><use href="#icon-dashboard"></use></svg>
                 <span>Dashboard</span>
             </button>
 
             <button class="nav-item" data-page="courses" data-title="Courses">
-                <svg class="icon"><use href="#icon-courses"></use></svg>
+                <svg class="icon" aria-hidden="true"><use href="#icon-courses"></use></svg>
                 <span>Courses</span>
             </button>
 
             <button class="nav-item" data-page="assignments" data-title="Assignments">
-                <svg class="icon"><use href="#icon-clipboard"></use></svg>
+                <svg class="icon" aria-hidden="true"><use href="#icon-clipboard"></use></svg>
                 <span>Assignments</span>
             </button>
 
             <button class="nav-item" data-page="grades" data-title="Grades">
-                <svg class="icon"><use href="#icon-progress"></use></svg>
+                <svg class="icon" aria-hidden="true"><use href="#icon-progress"></use></svg>
                 <span>Grades</span>
             </button>
 
             <button class="nav-item" data-page="roommate" data-title="Roommate Finder">
-                <svg class="icon"><use href="#icon-roommate"></use></svg>
+                <svg class="icon" aria-hidden="true"><use href="#icon-roommate"></use></svg>
                 <span>Roommate Finder</span>
             </button>
 
             <button class="nav-item" data-page="notifications" data-title="Notifications">
-                <svg class="icon"><use href="#icon-notifications"></use></svg>
+                <svg class="icon" aria-hidden="true"><use href="#icon-notifications"></use></svg>
                 <span>Notifications</span>
+                <span class="nav-badge hidden"></span>
             </button>
 
             <button class="nav-item" data-page="settings" data-title="Settings">
-                <svg class="icon"><use href="#icon-edit"></use></svg>
+                <svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg>
                 <span>Settings</span>
             </button>
 
         </nav>
 
         <button class="nav-item logout" data-action="logout">
-            <svg class="icon"><use href="#icon-logout"></use></svg>
+            <svg class="icon" aria-hidden="true"><use href="#icon-logout"></use></svg>
             <span>Logout</span>
         </button>
 
@@ -280,7 +680,7 @@
             <div class="profile">
                 <span class="avatar user-avatar">S</span>
                 <span class="user-role">Student</span>
-                <svg class="icon icon-sm"><use href="#icon-chevron-down"></use></svg>
+                <svg class="icon icon-sm" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
             </div>
 
         </header>
@@ -293,19 +693,19 @@
 
                 <div class="card card--purple">
                     <div class="card-icon">
-                        <svg class="icon"><use href="#icon-courses"></use></svg>
+                        <svg class="icon" aria-hidden="true"><use href="#icon-courses"></use></svg>
                     </div>
                     <div class="card-body">
                         <h3>Courses</h3>
                         <strong>6</strong>
                         <p>Active courses</p>
                     </div>
-                    <svg class="card-watermark"><use href="#icon-courses"></use></svg>
+                    <svg class="card-watermark" aria-hidden="true"><use href="#icon-courses"></use></svg>
                 </div>
 
                 <div class="card card--blue">
                     <div class="card-icon">
-                        <svg class="icon"><use href="#icon-progress"></use></svg>
+                        <svg class="icon" aria-hidden="true"><use href="#icon-progress"></use></svg>
                     </div>
                     <div class="card-body">
                         <h3>Progress</h3>
@@ -320,26 +720,26 @@
 
                 <div class="card card--green">
                     <div class="card-icon">
-                        <svg class="icon"><use href="#icon-clipboard"></use></svg>
+                        <svg class="icon" aria-hidden="true"><use href="#icon-clipboard"></use></svg>
                     </div>
                     <div class="card-body">
                         <h3>Assignments</h3>
                         <strong>4</strong>
                         <p>Pending assignments</p>
                     </div>
-                    <svg class="card-watermark"><use href="#icon-calendar"></use></svg>
+                    <svg class="card-watermark" aria-hidden="true"><use href="#icon-calendar"></use></svg>
                 </div>
 
                 <div class="card card--orange">
                     <div class="card-icon">
-                        <svg class="icon"><use href="#icon-notifications"></use></svg>
+                        <svg class="icon" aria-hidden="true"><use href="#icon-notifications"></use></svg>
                     </div>
                     <div class="card-body">
                         <h3>Notifications</h3>
                         <strong>8</strong>
                         <p>New notifications</p>
                     </div>
-                    <svg class="card-watermark"><use href="#icon-notifications"></use></svg>
+                    <svg class="card-watermark" aria-hidden="true"><use href="#icon-notifications"></use></svg>
                 </div>
 
             </div>
@@ -351,18 +751,18 @@
 
                     <div class="panel-header">
                         <h3 class="panel-title">
-                            <svg class="icon"><use href="#icon-pulse"></use></svg>
+                            <svg class="icon" aria-hidden="true"><use href="#icon-pulse"></use></svg>
                             Recent Activity
                         </h3>
                         <button class="btn btn-ghost btn-sm">
                             View all activity
-                            <svg class="icon icon-sm"><use href="#icon-arrow-right"></use></svg>
+                            <svg class="icon icon-sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
                         </button>
                     </div>
 
                     <div class="activity-item">
                         <span class="activity-icon activity-icon--purple">
-                            <svg class="icon"><use href="#icon-check"></use></svg>
+                            <svg class="icon" aria-hidden="true"><use href="#icon-check"></use></svg>
                         </span>
                         <div class="activity-body">
                             <div class="title">Completed Database Management quiz</div>
@@ -373,7 +773,7 @@
 
                     <div class="activity-item">
                         <span class="activity-icon activity-icon--purple">
-                            <svg class="icon"><use href="#icon-check"></use></svg>
+                            <svg class="icon" aria-hidden="true"><use href="#icon-check"></use></svg>
                         </span>
                         <div class="activity-body">
                             <div class="title">Submitted Web Engineering assignment</div>
@@ -384,7 +784,7 @@
 
                     <div class="activity-item">
                         <span class="activity-icon activity-icon--blue">
-                            <svg class="icon"><use href="#icon-materials"></use></svg>
+                            <svg class="icon" aria-hidden="true"><use href="#icon-materials"></use></svg>
                         </span>
                         <div class="activity-body">
                             <div class="title">New study material uploaded</div>
@@ -395,7 +795,7 @@
 
                     <div class="activity-item">
                         <span class="activity-icon activity-icon--orange">
-                            <svg class="icon"><use href="#icon-notifications"></use></svg>
+                            <svg class="icon" aria-hidden="true"><use href="#icon-notifications"></use></svg>
                         </span>
                         <div class="activity-body">
                             <div class="title">New announcement from teacher</div>
@@ -415,7 +815,7 @@
                             <h3 class="panel-title">Overall Progress</h3>
                             <button class="btn btn-ghost btn-sm">
                                 This Semester
-                                <svg class="icon icon-sm"><use href="#icon-chevron-down"></use></svg>
+                                <svg class="icon icon-sm" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
                             </button>
                         </div>
 
@@ -454,7 +854,7 @@
 
                         <div class="deadline-item">
                             <span class="deadline-icon deadline-icon--purple">
-                                <svg class="icon"><use href="#icon-calendar"></use></svg>
+                                <svg class="icon" aria-hidden="true"><use href="#icon-calendar"></use></svg>
                             </span>
                             <div class="deadline-body">
                                 <div class="title">Web Engineering Assignment</div>
@@ -465,7 +865,7 @@
 
                         <div class="deadline-item">
                             <span class="deadline-icon deadline-icon--green">
-                                <svg class="icon"><use href="#icon-calendar"></use></svg>
+                                <svg class="icon" aria-hidden="true"><use href="#icon-calendar"></use></svg>
                             </span>
                             <div class="deadline-body">
                                 <div class="title">Database Lab Report</div>
@@ -476,7 +876,7 @@
 
                         <div class="deadline-item">
                             <span class="deadline-icon deadline-icon--orange">
-                                <svg class="icon"><use href="#icon-calendar"></use></svg>
+                                <svg class="icon" aria-hidden="true"><use href="#icon-calendar"></use></svg>
                             </span>
                             <div class="deadline-body">
                                 <div class="title">AI Project Proposal</div>
@@ -523,7 +923,7 @@
                             <td>
                                 <button class="btn btn-ghost btn-sm" data-action="viewCourse" data-course-id="web-eng">
                                     View
-                                    <svg class="icon icon-sm"><use href="#icon-arrow-right"></use></svg>
+                                    <svg class="icon icon-sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
                                 </button>
                             </td>
                         </tr>
@@ -536,7 +936,7 @@
                             <td>
                                 <button class="btn btn-ghost btn-sm" data-action="viewCourse" data-course-id="db-mgmt">
                                     View
-                                    <svg class="icon icon-sm"><use href="#icon-arrow-right"></use></svg>
+                                    <svg class="icon icon-sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
                                 </button>
                             </td>
                         </tr>
@@ -549,7 +949,7 @@
                             <td>
                                 <button class="btn btn-ghost btn-sm" data-action="viewCourse" data-course-id="comp-net">
                                     View
-                                    <svg class="icon icon-sm"><use href="#icon-arrow-right"></use></svg>
+                                    <svg class="icon icon-sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
                                 </button>
                             </td>
                         </tr>
@@ -567,7 +967,7 @@
         <section class="page hidden" data-page="course-detail">
 
             <button class="back-link" data-action="backToCourses">
-                <svg class="icon icon-sm"><use href="#icon-arrow-right"></use></svg>
+                <svg class="icon icon-sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
                 Back to Courses
             </button>
 
@@ -619,7 +1019,7 @@
         <section class="page hidden" data-page="assignment-detail">
 
             <button class="back-link" data-action="backToAssignments">
-                <svg class="icon icon-sm"><use href="#icon-arrow-right"></use></svg>
+                <svg class="icon icon-sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
                 Back to Assignments
             </button>
 
@@ -744,32 +1144,89 @@
         <!-- ROOMMATE FINDER -->
         <section class="page hidden" data-page="roommate">
 
-            <div class="panel">
+            <div class="panel tabs-wrapper">
 
                 <h3 class="panel-title">
-                    <svg class="icon"><use href="#icon-roommate"></use></svg>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-roommate"></use></svg>
                     Hostel Roommate Finder
                 </h3>
 
-                <div class="field-group">
-                    <label for="location">Hostel / Location</label>
-                    <input class="field" id="location" placeholder="e.g. West Hall, Block C">
+                <div class="tab-bar">
+                    <button class="active" data-action="switchTab" data-tab="browse">Browse</button>
+                    <button data-action="switchTab" data-tab="profile">My Profile</button>
+                    <button data-action="switchTab" data-tab="shortlisted">Shortlisted</button>
                 </div>
 
-                <div class="field-group">
-                    <label for="studyPreference">Study Preference</label>
-                    <select class="field" id="studyPreference">
-                        <option>Quiet environment</option>
-                        <option>Social environment</option>
-                        <option>Balanced</option>
-                    </select>
+                <div data-tab-content="browse">
+
+                    <div class="filter-row">
+                        <select class="field" id="hostelBudgetFilter">
+                            <option value="">Any budget</option>
+                            <option value="3000-4000">৳3000 - ৳4000</option>
+                            <option value="4000-5000">৳4000 - ৳5000</option>
+                        </select>
+                        <select class="field" id="hostelBlockFilter">
+                            <option value="">Any block</option>
+                            <option value="West Hall">West Hall</option>
+                            <option value="East Wing">East Wing</option>
+                            <option value="North Block">North Block</option>
+                        </select>
+                        <select class="field" id="hostelLifestyleFilter">
+                            <option value="">Any lifestyle</option>
+                            <option value="Quiet environment">Quiet environment</option>
+                            <option value="Social environment">Social environment</option>
+                            <option value="Balanced">Balanced</option>
+                        </select>
+                        <button class="btn btn-primary" data-action="searchHostelListings">Search</button>
+                    </div>
+
+                    <div class="hostel-results"></div>
+
                 </div>
 
-                <button class="btn btn-primary" data-action="findRoommate">
-                    Find Roommate
-                </button>
+                <div data-tab-content="profile" class="hidden">
 
-                <div id="roommateResult"></div>
+                    <div class="field-group">
+                        <label for="hostelProfileBudget">Budget range</label>
+                        <select class="field" id="hostelProfileBudget">
+                            <option>৳3000 - ৳4000</option>
+                            <option>৳4000 - ৳5000</option>
+                        </select>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="hostelProfileBlock">Preferred hostel / block</label>
+                        <select class="field" id="hostelProfileBlock">
+                            <option>West Hall</option>
+                            <option>East Wing</option>
+                            <option>North Block</option>
+                        </select>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="hostelProfileLifestyle">Lifestyle preference</label>
+                        <select class="field" id="hostelProfileLifestyle">
+                            <option>Quiet environment</option>
+                            <option>Social environment</option>
+                            <option>Balanced</option>
+                        </select>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="hostelProfileContact">Preferred contact method</label>
+                        <select class="field" id="hostelProfileContact">
+                            <option>Email</option>
+                            <option>In-app message</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary" data-action="saveHostelProfile">Save Profile</button>
+
+                </div>
+
+                <div data-tab-content="shortlisted" class="hidden">
+                    <div class="hostel-shortlist"></div>
+                </div>
 
             </div>
 
@@ -781,30 +1238,15 @@
 
             <div class="panel">
 
-                <h3 class="panel-title">
-                    <svg class="icon"><use href="#icon-notifications"></use></svg>
-                    Notifications
-                </h3>
-
-                <div class="notification">
-                    <svg class="icon"><use href="#icon-megaphone"></use></svg>
-                    New assignment posted in Web Engineering.
+                <div class="panel-header">
+                    <h3 class="panel-title">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-notifications"></use></svg>
+                        Notifications
+                    </h3>
+                    <button class="btn btn-ghost btn-sm" data-action="markAllNotificationsRead">Mark all as read</button>
                 </div>
 
-                <div class="notification">
-                    <svg class="icon"><use href="#icon-courses"></use></svg>
-                    New Database Management material available.
-                </div>
-
-                <div class="notification">
-                    <svg class="icon"><use href="#icon-calendar"></use></svg>
-                    Midterm examination schedule updated.
-                </div>
-
-                <div class="notification">
-                    <svg class="icon"><use href="#icon-logo"></use></svg>
-                    Your assignment has been graded.
-                </div>
+                <div class="notifications-list"></div>
 
             </div>
 
@@ -822,51 +1264,52 @@
     <aside class="sidebar">
 
         <div class="brand">
-            <svg class="icon"><use href="#icon-logo"></use></svg>
+            <svg class="icon" aria-hidden="true"><use href="#icon-logo"></use></svg>
             UniPortal
         </div>
 
         <nav class="nav">
 
             <button class="nav-item" data-page="dashboard" data-title="Dashboard">
-                <svg class="icon"><use href="#icon-dashboard"></use></svg>
+                <svg class="icon" aria-hidden="true"><use href="#icon-dashboard"></use></svg>
                 <span>Dashboard</span>
             </button>
 
             <button class="nav-item" data-page="courses" data-title="Courses">
-                <svg class="icon"><use href="#icon-courses"></use></svg>
+                <svg class="icon" aria-hidden="true"><use href="#icon-courses"></use></svg>
                 <span>Courses</span>
             </button>
 
             <button class="nav-item" data-page="grading" data-title="Grading">
-                <svg class="icon"><use href="#icon-clipboard"></use></svg>
+                <svg class="icon" aria-hidden="true"><use href="#icon-clipboard"></use></svg>
                 <span>Grading</span>
             </button>
 
             <button class="nav-item" data-page="analytics" data-title="Class Analytics">
-                <svg class="icon"><use href="#icon-progress"></use></svg>
+                <svg class="icon" aria-hidden="true"><use href="#icon-progress"></use></svg>
                 <span>Class Analytics</span>
             </button>
 
             <button class="nav-item" data-page="announcements" data-title="Announcements">
-                <svg class="icon"><use href="#icon-megaphone"></use></svg>
+                <svg class="icon" aria-hidden="true"><use href="#icon-megaphone"></use></svg>
                 <span>Announcements</span>
             </button>
 
             <button class="nav-item" data-page="notifications" data-title="Notifications">
-                <svg class="icon"><use href="#icon-notifications"></use></svg>
+                <svg class="icon" aria-hidden="true"><use href="#icon-notifications"></use></svg>
                 <span>Notifications</span>
+                <span class="nav-badge hidden"></span>
             </button>
 
             <button class="nav-item" data-page="settings" data-title="Settings">
-                <svg class="icon"><use href="#icon-edit"></use></svg>
+                <svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg>
                 <span>Settings</span>
             </button>
 
         </nav>
 
         <button class="nav-item logout" data-action="logout">
-            <svg class="icon"><use href="#icon-logout"></use></svg>
+            <svg class="icon" aria-hidden="true"><use href="#icon-logout"></use></svg>
             <span>Logout</span>
         </button>
 
@@ -889,7 +1332,7 @@
             <div class="profile">
                 <span class="avatar user-avatar">T</span>
                 <span class="user-role">Teacher</span>
-                <svg class="icon icon-sm"><use href="#icon-chevron-down"></use></svg>
+                <svg class="icon icon-sm" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
             </div>
 
         </header>
@@ -902,50 +1345,50 @@
 
                 <div class="card card--purple">
                     <div class="card-icon">
-                        <svg class="icon"><use href="#icon-courses"></use></svg>
+                        <svg class="icon" aria-hidden="true"><use href="#icon-courses"></use></svg>
                     </div>
                     <div class="card-body">
                         <h3>Classes</h3>
                         <strong>2</strong>
                         <p>Active classes</p>
                     </div>
-                    <svg class="card-watermark"><use href="#icon-courses"></use></svg>
+                    <svg class="card-watermark" aria-hidden="true"><use href="#icon-courses"></use></svg>
                 </div>
 
                 <div class="card card--blue">
                     <div class="card-icon">
-                        <svg class="icon"><use href="#icon-users"></use></svg>
+                        <svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg>
                     </div>
                     <div class="card-body">
                         <h3>Students</h3>
                         <strong>60</strong>
                         <p>Across all classes</p>
                     </div>
-                    <svg class="card-watermark"><use href="#icon-users"></use></svg>
+                    <svg class="card-watermark" aria-hidden="true"><use href="#icon-users"></use></svg>
                 </div>
 
                 <div class="card card--green">
                     <div class="card-icon">
-                        <svg class="icon"><use href="#icon-clipboard"></use></svg>
+                        <svg class="icon" aria-hidden="true"><use href="#icon-clipboard"></use></svg>
                     </div>
                     <div class="card-body">
                         <h3>Pending Grading</h3>
                         <strong>12</strong>
                         <p>Awaiting review</p>
                     </div>
-                    <svg class="card-watermark"><use href="#icon-clipboard"></use></svg>
+                    <svg class="card-watermark" aria-hidden="true"><use href="#icon-clipboard"></use></svg>
                 </div>
 
                 <div class="card card--orange">
                     <div class="card-icon">
-                        <svg class="icon"><use href="#icon-megaphone"></use></svg>
+                        <svg class="icon" aria-hidden="true"><use href="#icon-megaphone"></use></svg>
                     </div>
                     <div class="card-body">
                         <h3>Announcements</h3>
                         <strong>5</strong>
                         <p>Sent this term</p>
                     </div>
-                    <svg class="card-watermark"><use href="#icon-megaphone"></use></svg>
+                    <svg class="card-watermark" aria-hidden="true"><use href="#icon-megaphone"></use></svg>
                 </div>
 
             </div>
@@ -957,12 +1400,12 @@
 
                     <div class="panel-header">
                         <h3 class="panel-title">
-                            <svg class="icon"><use href="#icon-pulse"></use></svg>
+                            <svg class="icon" aria-hidden="true"><use href="#icon-pulse"></use></svg>
                             Pending Submissions
                         </h3>
                         <button class="btn btn-ghost btn-sm" data-action="switchToGradingPage">
                             View grading queue
-                            <svg class="icon icon-sm"><use href="#icon-arrow-right"></use></svg>
+                            <svg class="icon icon-sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
                         </button>
                     </div>
 
@@ -981,7 +1424,7 @@
 
                         <div class="deadline-item">
                             <span class="deadline-icon deadline-icon--purple">
-                                <svg class="icon"><use href="#icon-courses"></use></svg>
+                                <svg class="icon" aria-hidden="true"><use href="#icon-courses"></use></svg>
                             </span>
                             <div class="deadline-body">
                                 <div class="title">Web Engineering</div>
@@ -992,7 +1435,7 @@
 
                         <div class="deadline-item">
                             <span class="deadline-icon deadline-icon--green">
-                                <svg class="icon"><use href="#icon-courses"></use></svg>
+                                <svg class="icon" aria-hidden="true"><use href="#icon-courses"></use></svg>
                             </span>
                             <div class="deadline-body">
                                 <div class="title">Database Management</div>
@@ -1022,7 +1465,7 @@
                         <div class="title">Web Engineering</div>
                         <div class="meta">Fall 2026 • 32 students</div>
                     </button>
-                    <svg class="icon"><use href="#icon-edit"></use></svg>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg>
                 </div>
 
                 <div class="list-row-wrapper">
@@ -1030,7 +1473,7 @@
                         <div class="title">Database Management</div>
                         <div class="meta">Fall 2026 • 28 students</div>
                     </button>
-                    <svg class="icon"><use href="#icon-edit"></use></svg>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg>
                 </div>
 
             </div>
@@ -1057,7 +1500,7 @@
                 <h3>Materials Upload</h3>
 
                 <div class="dropzone">
-                    <svg class="icon"><use href="#icon-upload"></use></svg>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-upload"></use></svg>
                     <p>Drag and drop files here, or click to browse</p>
                 </div>
 
@@ -1087,7 +1530,7 @@
         <section class="page hidden" data-page="grading-detail">
 
             <button class="back-link" data-action="backToGrading">
-                <svg class="icon icon-sm"><use href="#icon-arrow-right"></use></svg>
+                <svg class="icon icon-sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
                 Back to Grading Queue
             </button>
 
@@ -1179,25 +1622,15 @@
 
             <div class="panel">
 
-                <h3 class="panel-title">
-                    <svg class="icon"><use href="#icon-notifications"></use></svg>
-                    Notifications
-                </h3>
-
-                <div class="notification">
-                    <svg class="icon"><use href="#icon-clipboard"></use></svg>
-                    3 new submissions in Web Engineering.
+                <div class="panel-header">
+                    <h3 class="panel-title">
+                        <svg class="icon" aria-hidden="true"><use href="#icon-notifications"></use></svg>
+                        Notifications
+                    </h3>
+                    <button class="btn btn-ghost btn-sm" data-action="markAllNotificationsRead">Mark all as read</button>
                 </div>
 
-                <div class="notification">
-                    <svg class="icon"><use href="#icon-users"></use></svg>
-                    Class roster updated for Database Management.
-                </div>
-
-                <div class="notification">
-                    <svg class="icon"><use href="#icon-calendar"></use></svg>
-                    Midterm examination schedule updated.
-                </div>
+                <div class="notifications-list"></div>
 
             </div>
 
