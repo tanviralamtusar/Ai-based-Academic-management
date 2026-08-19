@@ -6,6 +6,10 @@
 
     <title>University Learning Portal</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="../style/style.css">
 </head>
 
@@ -54,36 +58,40 @@
 
         <h2>UniPortal</h2>
 
-        <button onclick="showPage('dashboard')">
-            📊 Dashboard
-        </button>
+        <nav class="nav">
 
-        <button onclick="showPage('courses')">
-            📚 Courses
-        </button>
+            <button data-page="dashboard" onclick="showPage('dashboard')">
+                <span class="nav-icon">📊</span> Dashboard
+            </button>
 
-        <button onclick="showPage('progress')">
-            📈 Progress
-        </button>
+            <button data-page="courses" onclick="showPage('courses')">
+                <span class="nav-icon">📚</span> Courses
+            </button>
 
-        <button onclick="showPage('materials')">
-            📄 Materials
-        </button>
+            <button data-page="progress" onclick="showPage('progress')">
+                <span class="nav-icon">📈</span> Progress
+            </button>
 
-        <button onclick="showPage('ai')">
-            🤖 AI Summarizer
-        </button>
+            <button data-page="materials" onclick="showPage('materials')">
+                <span class="nav-icon">📄</span> Materials
+            </button>
 
-        <button onclick="showPage('roommate')">
-            🏠 Roommate Finder
-        </button>
+            <button data-page="ai" onclick="showPage('ai')">
+                <span class="nav-icon">🤖</span> AI Summarizer
+            </button>
 
-        <button onclick="showPage('notifications')">
-            🔔 Notifications
-        </button>
+            <button data-page="roommate" onclick="showPage('roommate')">
+                <span class="nav-icon">🏠</span> Roommate Finder
+            </button>
+
+            <button data-page="notifications" onclick="showPage('notifications')">
+                <span class="nav-icon">🔔</span> Notifications
+            </button>
+
+        </nav>
 
         <button onclick="logout()" class="logout">
-            🚪 Logout
+            <span class="nav-icon">🚪</span> Logout
         </button>
 
     </aside>

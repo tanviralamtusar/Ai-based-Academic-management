@@ -77,6 +77,16 @@ function showPage(pageName) {
         .classList.remove("hidden");
 
 
+    document
+        .querySelectorAll(".nav button")
+        .forEach(button => {
+            button.classList.toggle(
+                "active",
+                button.dataset.page === pageName
+            );
+        });
+
+
     const titles = {
 
         dashboard: "Dashboard",
