@@ -1,6 +1,13 @@
 let currentUser = "";
 
 
+function escapeHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+}
+
+
 /* LOGIN */
 
 function login() {
@@ -158,7 +165,7 @@ function summarize() {
 
     result.innerHTML =
         "<strong>AI Summary:</strong><br><br>" +
-        summary;
+        escapeHtml(summary);
 }
 
 
@@ -203,12 +210,12 @@ function findRoommate() {
 
             <p>
                 <strong>Hostel:</strong>
-                ${location}
+                ${escapeHtml(location)}
             </p>
 
             <p>
                 <strong>Preference:</strong>
-                ${preference}
+                ${escapeHtml(preference)}
             </p>
 
             <br>
